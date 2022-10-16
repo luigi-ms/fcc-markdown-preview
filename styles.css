@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
+main {
+  font-family: 'Merriweather', 'Times New Roman', serif;
+  height: 100vh;
+  background-color: rgb(16, 29, 37);
+  color: rgb(173, 181, 184);
+  padding-top: 5vh;
+}
+
+#editor {
+  background-color: rgb(35, 45, 54);
+  color: inherit;
+}
+
+#preview {
+  background-color: rgb(27, 38, 44);
+  color: inherit;
+}
+
+#preview, #editor {
+  margin-top: 3vh;
+  width: 65vw;
+  height: 30vh;
+}
