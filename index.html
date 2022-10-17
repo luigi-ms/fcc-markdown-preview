@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" 
-  content="width=device-width, initial-scale=1.0, user-scalable=no">
+    content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>Markdown Previewer</title>
   
   <link rel="stylesheet" href="./styles.css" />
@@ -13,7 +13,7 @@
     crossorigin="anonymous">
 </head>
 <body>
-  <main class="container-fluid">
+  <main id="app" class="container-fluid">
     <div class="row">
       <h1 class="text-center">Visualizador de markdown</h1>
     </div>
@@ -22,19 +22,13 @@
         <textarea id="editor" 
           class="form-controll overflow-scroll border border-warning align-bottom" 
           cols="30"
-          placeholder="Digite seu markdown"/>
-        <button type="submit" 
-          class="btn btn-outline-light align-bottom">
-          Visualizar
-        </button>
+          placeholder="Digite seu markdown" v-model="markd" />
       </form>
     </div>
     <div class="row">
       <div class="col-sm-6 col-md-6 col-lg-12">
         <output id="preview" 
-          class="overflow-scroll border border-info">
-          {{ text }}
-        </output>
+          class="overflow-scroll border border-info"></output>
       </div>
     </div>
   </main>
@@ -43,15 +37,30 @@
 		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
 		crossorigin="anonymous"></script>
 	<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
-	<!--
+	
+	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  
 	<script type="module">
 		import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
 			
   	createApp({
-			data() { return {} },
-			mounted() {},
+			data() {
+			  return {
+			    text: "",
+			    markd: "# Hello World"
+			  }
+			},
+			mounted() {
+			  this.text = marked.parse(this.markd);
+			  document.querySelector("#preview").innerHTML = this.text;
+			},
+			watch: {
+			  markd() {
+			    this.text = marked.parse(this.markd);
+			    document.querySelector("#preview").innerHTML = this.text;
+			  }
+			}
 		}).mount('#app');
 	</script>
-	-->
 </body>
 </html>
